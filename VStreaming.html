@@ -34,7 +34,7 @@
         </div>
     </header>
     <!-- Menú con categorías, actores y directores  -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light  sticky-top">
         <a class="navbar-brand" href="VStreaming.html">VideoSystem</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +47,7 @@
                     <a class="nav-link" id="principal" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" data-hover="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         Categorías
                     </a>
@@ -57,10 +57,10 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Actores</a>
+                    <a class="nav-link" id="boton-actores" href="#" tabindex="-1" aria-disabled="true">Actores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Directores</a>
+                    <a class="nav-link" id="boton-directores" href="#" tabindex="-1" aria-disabled="true">Directores</a>
                 </li>
             </ul>
         </div>
@@ -112,14 +112,7 @@
         <p class="text-center">
             <a id="mibtn" href="#mibtn">&copy; Imágenes y contenido de sus respectivos autores</a>
         </p>
-        <p>Information courtesy of
-            IMDb
-            (http://www.imdb.com).
-            Used with permission.</p>
-        <p>Information courtesy of
-            Mediaset
-            (http://www.mediaset.es).</p>
-        <p>&copy; Las imágenes pueden estar protegidas por derechos de autor.</p>
+        
     </footer>
 
     <!-- Optional JavaScript -->
@@ -137,7 +130,7 @@
     <script src="js/ObjectsVS.js"></script>
     <script src="js/VStreaming.js"></script>
     <!-- <script src="js/testVStreaming.js"></script> -->
-    <script src="js/mi_js.js"></script>
+    <script src="js/DOM.js"></script>
 </body>
 
 </html>

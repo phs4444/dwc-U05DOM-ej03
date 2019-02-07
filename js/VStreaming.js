@@ -145,12 +145,12 @@ var VStreaming = (function () { //La función anónima devuelve un método getIn
                 return _productions.length;
             }
 
-        /****  CATEGORIAS: 
-             *      Iterador de categorías
-             *      function getCategoryPosition(category) => posición de category o -1
-             *      addCategory => Number con el número de elementos
-             *      removeCategory => Number con el número de elementos
-            */
+            /****  CATEGORIAS: 
+                 *      Iterador de categorías
+                 *      function getCategoryPosition(category) => posición de category o -1
+                 *      addCategory => Number con el número de elementos
+                 *      removeCategory => Number con el número de elementos
+                */
 
             //  Iterador de categorías
             Object.defineProperty(this, 'categories', {
@@ -333,7 +333,7 @@ var VStreaming = (function () { //La función anónima devuelve un método getIn
                 //si lo he encontrado => lanzo excepción
                 if (encontrado) throw new ElementAlreadyExistException('production');
                 //si no => la añado y devuelvo el nuevo número de elementos. Además si no existe productions lo creo
-               if (_categories[categoryPosition].productions === undefined) _categories[categoryPosition].productions = [];
+                if (_categories[categoryPosition].productions === undefined) _categories[categoryPosition].productions = [];
                 return _categories[categoryPosition].productions.push(production);
             }
 
@@ -358,7 +358,7 @@ var VStreaming = (function () { //La función anónima devuelve un método getIn
                 _categories[categoryPosition].productions.splice(proInCatPosition, 1);
                 return _categories[categoryPosition].productions.length;
             }
-        
+
             //getProductionsCategory iterador de las producciones de una categoría
             this.getProductionsCategory = function (category) {
                 //compruebo que no son nulos y que son del tipo esperado
@@ -410,8 +410,9 @@ var VStreaming = (function () { //La función anónima devuelve un método getIn
                 //si lo he encontrado => lanzo excepción
                 if (encontrado) throw new ElementAlreadyExistException('production');
                 //si no => la añado y devuelvo el nuevo número de elementos. Además si no existe productions lo creo
-               if (_directors[directorPosition].productions === undefined) _directors[directorPosition].productions = [];
-
+                if (_directors[directorPosition].productions === undefined) _directors[directorPosition].productions = [];
+                if (_productions[productionPosition].directors === undefined) _productions[productionPosition].directors = [];
+                _productions[productionPosition].directors.push(director);
                 return _directors[directorPosition].productions.push(production);
             }
 
@@ -463,7 +464,7 @@ var VStreaming = (function () { //La función anónima devuelve un método getIn
              */
 
             //assignActor => Asigna una producción a una actor. Si éstas no existen se añaden al sistema. Devuelve num de producciones q tiene
-            this.assignActor = function (production, actor) {
+            this.assignActor = function (production, actor, character, main) {
                 //compruebo que no son nulos y que son del tipo esperado
                 if (actor === null) throw new NullElementException('actor');
                 if (production === null) throw new NullElementException('production');
@@ -475,7 +476,7 @@ var VStreaming = (function () { //La función anónima devuelve un método getIn
                 //si la actor no existe lo añado y ya se que su posición será la última del array (no uso addActor porque redunda)
                 if (actorPosition === -1) actorPosition = _actors.push(actor) - 1;
                 //igual con la producción. actualizamos la nueva posición aunque no es necesario
-                if (productionPosition === -1) productionPosition = _productions.push(actor) - 1;
+                if (productionPosition === -1) productionPosition = _productions.push(production) - 1;
                 //buscamos en el actor la producción por si ya está incluida
                 let i = 0;
                 let encontrado = false;
@@ -488,8 +489,21 @@ var VStreaming = (function () { //La función anónima devuelve un método getIn
                 //si lo he encontrado => lanzo excepción
                 if (encontrado) throw new ElementAlreadyExistException('production');
                 //si no => la añado y devuelvo el nuevo número de elementos. Además si no existe productions lo creo
-               if (_actors[actorPosition].productions === undefined) _actors[actorPosition].productions = [];
-                return _actors[actorPosition].productions.push(production);
+                if (_actors[actorPosition].productions === undefined) _actors[actorPosition].productions = [];
+                if (_productions[productionPosition].casting === undefined) _productions[productionPosition].casting = [];
+                _productions[productionPosition].casting.push(
+                    {
+                        actor: actor,
+                        character: character,
+                        main: main
+                    });
+                return _actors[actorPosition].productions.push(
+                    {
+                        production: production,
+                        character: character,
+                        main: main
+                    }
+                );
             }
 
             //deassignActor => Desasigna una producción a un actor. Devuelve el número de producciones que le quedan
